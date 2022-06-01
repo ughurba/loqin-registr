@@ -10,3 +10,31 @@ const btnLoqin = document.querySelector('.btn-login');
 const page = document.querySelector('.page');
 const formLoqin = document.querySelector('.form-loqin');
 const btnLogout = document.querySelector('.btn-logout');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+btnLoqin.addEventListener('click', loqinUserHandler);
+btnRegistr.addEventListener("click", registrationHandler);
+registrSubmit.addEventListener("click", saveUserRegistrHandler);
+btnLogout.addEventListener('click', wayOutInProfile);
