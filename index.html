@@ -5,6 +5,65 @@
     <title>Title</title>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="page">
+    <h1 id="title-page">Hello</h1>
+    <button type="submit" class="btn-logout btn btn-warning">Logout</button>
 
+</div>
+
+
+<form class="form-loqin">
+    <div class="mb-3">
+
+        <label for="usernameLoqin" class="form-label">Username</label>
+        <input type="text" class="user-name-loqin form-control" id="usernameLoqin" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="text" class="password-loqin form-control" id="password">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <div class="buttons">
+        <button type="submit" class="btn-login btn btn-primary">Login</button>
+        <button type="submit" class="btn-registr btn btn-warning">Registr</button>
+    </div>
+</form>
+
+
+
+<form class="registr-modal">
+    <div class="mb-3">
+
+        <label for="UsernameRegistr" class=" form-label">Username</label>
+        <input type="text" class="username-registr form-control" id="UsernameRegistr" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="PasswordRegistr" class=" form-label">Password</label>
+        <input type="text" class="password-registr form-control" id="PasswordRegistr">
+    </div>
+    <div class="buttons">
+        <button type="submit" class="registr-submit btn btn-primary">Submit</button>
+    </div>
+</form>
+<div class="overlay"></div>
+<script src="./assets/app.js"></script>
+</body>
+</html>
 </body>
 </html>
