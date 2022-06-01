@@ -28,3 +28,14 @@ form{
 .page{
     display: none;
 }
+.close-modal-window{
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    background-color: #383838;
+    border: none;
+    font-size: 25px;
+    color: red;
+    padding: 0px 3px;
+
+}

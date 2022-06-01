@@ -14,9 +14,15 @@ const btnLogout = document.querySelector('.btn-logout');
 
 const userGoodList = JSON.parse(localStorage.getItem('users'));
 
+
 userGoodList.forEach(user => {
     if (user.isLoqin) {
         profileLogin(user.username);
+    }
+    if (user.isCheked == true) {
+        userNameLoqinInput.value = user.username
+
+        passwordLoqunInput.value = user.password
     }
 })
 
@@ -25,11 +31,13 @@ function renderDisplay(item, display) {
     item.style.display = display;
 }
 
+
 function addtoUserInfo(userName, password) {
 
     let userList = JSON.parse(localStorage.getItem("users")) || [];
 
     userList.push({
+        isCheked: false,
         isLoqin: false,
         username: userName,
         password: password,
@@ -38,6 +46,7 @@ function addtoUserInfo(userName, password) {
     localStorage.setItem("users", JSON.stringify(userList));
 }
 
+
 function registrationHandler(ev) {
     ev.preventDefault();
 
@@ -45,13 +54,48 @@ function registrationHandler(ev) {
     renderDisplay(overlayWindow, "block");
 }
 
+
 function renderInputValue(value) {
     userNameRegistrInput.value = value;
     passwordRegistrInput.value = value;
 }
 
+function checkUserInfoLoqin(userName, password) {
+
+    let userList = JSON.parse(localStorage.getItem("users"));
+
+    let element = userList.find(
+        (user) => user.username === userName || user.password === password
+    );
+
+
+    if (element === undefined) {
+
+        alert('no such account')
+
+    } else {
+        const selectedCheckBox = document.querySelector('.form-check-input').checked
+
+        if (selectedCheckBox) {
+            element.isCheked = true;
+        } else {
+            element.isCheked = false;
+        }
+
+        element.isLoqin = true;
+
+        localStorage.setItem('users', JSON.stringify(userList))
+
+        profileLogin(element.username)
+
+    }
+
+
+}
+
+
 function checkUserInfoRegistr(userName, password) {
-    userList = JSON.parse(localStorage.getItem("users"));
+    let userList = JSON.parse(localStorage.getItem("users"));
 
     if (userList == null) {
         addtoUserInfo(userName, password);
@@ -59,7 +103,7 @@ function checkUserInfoRegistr(userName, password) {
 
 
     let element = userList.find(
-        (user) => user.userName === userName || user.password === password
+        (user) => user.username === userName || user.password === password
     );
 
 
@@ -74,6 +118,7 @@ function checkUserInfoRegistr(userName, password) {
 
     }
 }
+
 
 function saveUserRegistrHandler(ev) {
     ev.preventDefault();
@@ -99,48 +144,33 @@ function profileLogin(userName) {
 
 }
 
+
 function wayOutInProfile() {
     renderDisplay(page, 'none');
     renderDisplay(formLoqin, "flex");
 
 
     let userGoodList = JSON.parse(localStorage.getItem('users'));
+
     userGoodList.forEach(user => {
-        user.isLoqin = false
+
+         user.isLoqin = false
+
+        if (user.isCheked === true) {
+
+            userNameLoqinInput.value = user.username
+
+            passwordLoqunInput.value = user.password
+        } else {
+            userNameLoqinInput.value = ''
+
+            passwordLoqunInput.value = ''
+        }
+
 
     });
 
     localStorage.setItem('users', JSON.stringify(userGoodList));
-
-}
-
-function checkUserInfoLoqin(userName, password) {
-
-    let userList = JSON.parse(localStorage.getItem("users"));
-
-    let element = userList.find(
-        (user) => user.username === userName || user.password === password
-    );
-
-
-    if (element === undefined) {
-
-        alert('bele bir account yoxdur')
-
-    } else {
-        const selectedCheckBox = document.querySelector('.form-check-input').checked
-
-        if (selectedCheckBox) {
-            element.checkUser = true
-        }
-
-
-        element.isLoqin = true;
-        localStorage.setItem('users', JSON.stringify(userList))
-        profileLogin(element.username)
-
-    }
-
 
 }
 
@@ -153,25 +183,6 @@ function loqinUserHandler(ev) {
     checkUserInfoLoqin(userNameLoqinInputValue, passwordLoqinInputValue)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 btnLoqin.addEventListener('click', loqinUserHandler);
